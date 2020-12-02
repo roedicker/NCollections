@@ -1,0 +1,5 @@
+*.suo
+*.user
+*.vs
+/src/NCollections/bin
+/src/NCollections/obj
