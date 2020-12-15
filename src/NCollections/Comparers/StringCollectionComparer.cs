@@ -138,16 +138,27 @@ namespace NCollections.Comparers
           s = s.ToUpper(CultureInfo.InvariantCulture);
         }
 
+#if NETSTANDARD2_1
+        Result = s.GetHashCode(StringComparison.Ordinal);
+#else
         Result = s.GetHashCode();
+#endif
       }
 
       return Result;
     }
+
     /// <summary>
     /// Gets the hascode for this instance
     /// </summary>
     /// <returns>Hashcode for this instance</returns>
+#if NETSTANDARD2_1
+#pragma warning disable IDE0070 // Use 'System.HashCode'
+#endif
     public override int GetHashCode()
+#if NETSTANDARD2_1
+#pragma warning restore IDE0070 // Use 'System.HashCode'
+#endif
     {
       int hashCode = -631605227;
       hashCode = hashCode * -1521134295 + this.SortDirection.GetHashCode();
